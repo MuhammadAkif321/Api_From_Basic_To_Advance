@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:metapi_api/screen/get_products_screen.dart';
 import 'package:metapi_api/screen/get_user_screen.dart';
 import 'package:metapi_api/screen/getpost_screen.dart';
 
@@ -27,7 +28,11 @@ class HomeScreen extends StatelessWidget {
           Card(
             child: ListTile(
               title: Text("Show products"),
-              onTap: (){},
+              onTap: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                  return GetProductsScreen();
+                }));
+              },
             ),
           ),
 

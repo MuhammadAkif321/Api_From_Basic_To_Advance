@@ -52,17 +52,22 @@ class _GetProductsScreenState extends State<GetProductsScreen> {
         if(snapshot.hasData){
           List <Product> products= snapshot.data as List<Product>;
 
-          return GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2), itemBuilder:(context,index){
+          return GridView.builder(
+              itemCount: products.length,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4,childAspectRatio: .5), itemBuilder:(context,index){
             Product product = products[index];
 
             return Card(
+              shadowColor: Colors.greenAccent,
+              color: Colors.grey,
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(36.0),
                 child: Column(
                   spacing: 20,
                   children: [
-                    Image.network(product.image!,width: 200,),
-                    Text(product.title?? "No",style: TextStyle(fontWeight: FontWeight.bold),),
+                    Image.network(product.image!,width: 150,),
+                    Text(product.category?? 'no',style: TextStyle(color: Colors.purple,fontWeight: FontWeight.bold),),
+                    Text(product.title?? "No",),
                     Text('${product.price}\$' ?? "No", style: TextStyle(color: Colors.red),),
                     Wrap(
                       spacing: 16,
@@ -73,17 +78,18 @@ class _GetProductsScreenState extends State<GetProductsScreen> {
                           itemCount: 5,
                           //onRatingUpdate: (value) => setState(() => _rating = value),
                         ),
-                        Text("(${product.rating?.count ?? 0})", style: TextStyle(fontSize: 20, fontWeight: .bold),)
+                        Text("(${product.rating?.count ?? 0})", style: TextStyle(fontSize: 10, ),)
                       ],
                     ),
 
                     Text('${product.description}',
-                      maxLines: 2,
+                      //maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                          color: Colors.blue,
+                          color: Colors.black,
                           fontWeight: .bold,
-                          fontSize: 20),)
+                          fontSize: 10),),
+
 
 
                   ],
